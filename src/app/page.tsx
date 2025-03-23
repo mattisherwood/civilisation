@@ -234,6 +234,7 @@ const BuildMenu = ({
             style={{
               transformOrigin: "50% calc(50% + 45px)",
               transform: "translateY(-45px) rotate(var(--rotate))",
+              // @ts-ignore
               "--rotate": `${(i * 360) / availableSlots.length}deg`,
             }}
           >
