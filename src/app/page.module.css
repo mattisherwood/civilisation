@@ -3,6 +3,7 @@
   --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
   --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
 
+  --button-primary: #353232;
   --button-primary-hover: #383838;
   --button-secondary-hover: #f2f2f2;
 
@@ -22,6 +23,7 @@
     --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
     --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
 
+    --button-primary: #aeaeae;
     --button-primary-hover: #ccc;
     --button-secondary-hover: #1a1a1a;
   }
@@ -68,10 +70,7 @@
   padding: 0 20px;
   border: none;
   border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -165,4 +164,39 @@ a.secondary {
   .logo {
     filter: invert();
   }
+}
+
+/* ========================================== */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+}
+
+.tile {
+  width: 100px;
+  height: 100px;
+  background: var(--gray-alpha-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  --rotate: 0deg;
+  opacity: 0;
+  transform: scale(0);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  position: absolute;
+  border: solid 2px var(--foreground);
+  background: var(--button-primary);
+  padding: 8px;
+  border-radius: 99px;
+}
+
+.tile:hover .button {
+  opacity: 1;
+  transform: scale(1) rotate(var(--rotate));
 }

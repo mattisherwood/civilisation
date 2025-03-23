@@ -2,6 +2,14 @@
 
 A simple world builder akin to the mobile apps that follow on from Age of Empires or Civilization.
 
+## Progress
+
+00:00 Set up repo
+10:00 Installed next
+03:19 Basic MVP was done
+
+## Frameworks
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
