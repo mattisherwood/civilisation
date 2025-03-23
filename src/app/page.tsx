@@ -234,7 +234,7 @@ const BuildMenu = ({
             style={{
               transformOrigin: "50% calc(50% + 45px)",
               transform: "translateY(-45px) rotate(var(--rotate))",
-              // @ts-ignore
+              // @ts-expect-error --rotate is a valid CSS variable
               "--rotate": `${(i * 360) / availableSlots.length}deg`,
             }}
           >
