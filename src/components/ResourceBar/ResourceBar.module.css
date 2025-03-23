@@ -1,0 +1,8 @@
+.resourceBar {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+  align-items: center;
+  background: rgb(139, 0, 0);
+  padding: 8px 16px;
+}

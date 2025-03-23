@@ -32,7 +32,7 @@
 .main {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 16px;
   grid-row-start: 2;
 }
 
@@ -56,6 +56,10 @@
   padding: 2px 4px;
   border-radius: 4px;
   font-weight: 600;
+}
+
+.title {
+  text-align: center;
 }
 
 .ctas {
@@ -164,39 +168,4 @@ a.secondary {
   .logo {
     filter: invert();
   }
-}
-
-/* ========================================== */
-
-.board {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-}
-
-.tile {
-  width: 100px;
-  height: 100px;
-  background: var(--gray-alpha-100);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button {
-  --rotate: 0deg;
-  opacity: 0;
-  transform: scale(0);
-  cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s;
-  position: absolute;
-  border: solid 2px var(--foreground);
-  background: var(--button-primary);
-  padding: 8px;
-  border-radius: 99px;
-}
-
-.tile:hover .button {
-  opacity: 1;
-  transform: scale(1) rotate(var(--rotate));
 }
