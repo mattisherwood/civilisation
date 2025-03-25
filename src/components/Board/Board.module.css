@@ -10,6 +10,7 @@
   transform-origin: center bottom;
   transform-style: preserve-3d;
   backface-visibility: hidden;
+  --tileSize: 100px;
 }
 
 .with3D {

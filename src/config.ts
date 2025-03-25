@@ -4,7 +4,8 @@ export const terrainOptions: { name: Terrain; color: string; icon: string }[] =
   [
     { name: "water", color: "#0077be", icon: "" },
     { name: "grass", color: "#00a86b", icon: "" },
-    { name: "stone", color: "#a8a8a8", icon: "🪨" },
+    { name: "stone", color: "#a8a8a8", icon: "🏔️" },
+    { name: "ore", color: "#585858", icon: "⛰️" },
     { name: "sand", color: "#f0e68c", icon: "" },
     { name: "forest", color: "#228b22", icon: "🌲" },
   ]
@@ -14,6 +15,7 @@ export const resourceOptions: { name: string; icon: string }[] = [
   { name: "stone", icon: "🪨" },
   { name: "wheat", icon: "🌾" },
   { name: "wood", icon: "🪵" },
+  { name: "iron", icon: "▀" },
 ]
 
 export const slotOptions: Slot[] = [
@@ -35,11 +37,19 @@ export const slotOptions: Slot[] = [
   },
   {
     name: "quarry",
-    icon: "⛏️",
+    icon: "🧨",
     availableOn: ["stone"],
     buildCost: { wood: -1 },
     salvageValue: { wood: 0.5 },
     output: { stone: 1 },
+  },
+  {
+    name: "mine",
+    icon: "⛏️",
+    availableOn: ["ore"],
+    buildCost: { stone: -1, wood: -2 },
+    salvageValue: { stone: 0.5, wood: 1 },
+    output: { iron: 1 },
   },
   {
     name: "boat",
@@ -54,23 +64,27 @@ export const slotOptions: Slot[] = [
 const randomTerrain = (area: "coastal" | "inland" = "inland"): Terrain => {
   const terrains = {
     inland: [
-      ...Array(5).fill("grass"),
+      ...Array(4).fill("grass"),
       ...Array(3).fill("forest"),
       "stone",
+      "ore",
       "water",
     ],
-    coastal: ["water", "stone", "grass", ...Array(7).fill("sand")],
+    coastal: ["water", "grass", ...Array(8).fill("sand")],
   }
 
   return terrains[area][Math.floor(Math.random() * 10)]
 }
 
 export const map: Terrain[][] = [
-  Array(14).fill("water"),
+  [null, null, ...Array(10).fill("water"), null, null],
   [
-    ...Array(3).fill("water"),
+    null,
+    ...Array(2).fill("water"),
     ...Array.from({ length: 8 }, () => randomTerrain("coastal")),
-    ...Array(3).fill("water"),
+    ...Array(2).fill("water"),
+    ,
+    null,
   ],
   [
     ...Array(2).fill("water"),
@@ -80,11 +94,18 @@ export const map: Terrain[][] = [
     ...Array(2).fill("water"),
   ],
   [
-    ...Array(2).fill("water"),
+    ...Array(1).fill("water"),
     randomTerrain("coastal"),
-    ...Array.from({ length: 8 }, () => randomTerrain()),
+    ...Array.from({ length: 10 }, () => randomTerrain()),
     randomTerrain("coastal"),
-    ...Array(2).fill("water"),
+    ...Array(1).fill("water"),
+  ],
+  [
+    ...Array(1).fill("water"),
+    randomTerrain("coastal"),
+    ...Array.from({ length: 10 }, () => randomTerrain()),
+    randomTerrain("coastal"),
+    ...Array(1).fill("water"),
   ],
   [
     ...Array(2).fill("water"),
@@ -94,16 +115,11 @@ export const map: Terrain[][] = [
     ...Array(2).fill("water"),
   ],
   [
+    null,
     ...Array(2).fill("water"),
-    randomTerrain("coastal"),
-    ...Array.from({ length: 8 }, () => randomTerrain()),
-    randomTerrain("coastal"),
-    ...Array(2).fill("water"),
-  ],
-  [
-    ...Array(3).fill("water"),
     ...Array.from({ length: 8 }, () => randomTerrain("coastal")),
-    ...Array(3).fill("water"),
+    ...Array(2).fill("water"),
+    null,
   ],
-  Array(14).fill("water"),
+  [null, null, ...Array(10).fill("water"), null, null],
 ]

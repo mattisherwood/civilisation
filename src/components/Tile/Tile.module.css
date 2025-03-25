@@ -1,20 +1,30 @@
 .tile {
-  width: 100px;
-  flex-shrink: 0;
+  width: var(--tileSize);
+  flex: 0 0 var(--tileSize);
   aspect-ratio: 1;
-  background: var(--gray-alpha-100);
+  background: var(--midGrey);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid 1px var(--gray-alpha-200);
+  border: solid 1px rgba(var(--lightGrey-channel), 0.5);
   transform-style: preserve-3d;
   backface-visibility: hidden;
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--black);
+  transform: translate3d(0, 0, -16px);
+  box-shadow: 0 0 16px var(--black);
 }
 
 .slot {
   position: absolute;
   inset: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease-in-out;
@@ -29,32 +39,38 @@
 }
 
 .water {
-  background: url("https://www.textures.com/system/gallery/photos/FX/Water/Plain/50937/WaterPlain0012_1_150.jpg")
-    var(--water);
+  background-image: url("https://www.textures.com/system/gallery/photos/FX/Water/Plain/50937/WaterPlain0012_1_150.jpg");
+  background-color: var(--water);
 }
 
 .sand {
-  background: url("https://www.textures.com/system/gallery/photos/114651-Sand/114652-Sand/107953/Sand0180_1_150.jpg")
-    var(--sand);
+  background-image: url("https://www.textures.com/system/gallery/photos/114651-Sand/114652-Sand/107953/Sand0180_1_150.jpg");
+  background-color: var(--sand);
 }
 
 .grass {
-  background: url("https://www.textures.com/system/gallery/photos/Nature/Grass/34892/Grass0053_1_150.jpg")
-    var(--grass);
+  background-image: url("https://www.textures.com/system/gallery/photos/Nature/Grass/34892/Grass0053_1_150.jpg");
+  background-color: var(--grass);
 }
 
 .forest {
-  background: url("https://www.textures.com/system/gallery/photos/Nature/Grass/34892/Grass0053_1_150.jpg")
-    var(--forest);
+  background-image: url("https://www.textures.com/system/gallery/photos/Nature/Grass/34892/Grass0053_1_150.jpg");
+  background-color: var(--forest);
 }
 
 .stone {
-  background: url("https://www.textures.com/system/gallery/photos/Rock/Smooth/64274/RockSmooth0076_1_150.jpg")
-    var(--stone);
+  background-image: url("https://www.textures.com/system/gallery/photos/Rock/Smooth/64274/RockSmooth0076_1_150.jpg");
+  background-color: var(--stone);
+}
+
+.ore {
+  background-image: url("https://www.textures.com/system/gallery/photos/Rock/Sharp/117243/RockSharp0123_6_150.jpg");
+  background-color: var(--ore);
 }
 
 .object {
   z-index: 1;
+  font-size: 4rem;
 }
 
 .object::before {
@@ -90,6 +106,11 @@
     transform: translateY(-20px);
     opacity: 1;
   }
+}
+
+.progress {
+  width: 70%;
+  margin-top: -8px;
 }
 
 .button {

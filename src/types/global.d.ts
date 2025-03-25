@@ -1,6 +1,6 @@
-export type Resource = "fish" | "stone" | "wheat" | "wood"
-export type Terrain = "water" | "grass" | "stone" | "sand" | "forest"
-export type SlotName = "farm" | "lumberyard" | "quarry" | "boat"
+export type Resource = "fish" | "iron" | "stone" | "wheat" | "wood"
+export type Terrain = "forest" | "grass" | "ore" | "sand" | "stone" | "water"
+export type SlotName = "boat" | "farm" | "lumberyard" | "mine" | "quarry"
 
 export type ResourceAmount = {
   [key in Resource]?: number

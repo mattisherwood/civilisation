@@ -3,15 +3,20 @@
   --white: rgb(var(--white-channel));
   --black-channel: 0, 0, 0;
   --black: rgb(var(--black-channel));
+  --darkGrey-channel: 29, 26, 26;
   --darkGrey: #1d1a1a;
+  --midGrey-channel: 29, 26, 26;
+  --midGrey: #a3a3a3;
+  --lightGrey-channel: 204, 204, 204;
   --lightGrey: #cccccc;
 
   --leather: #372114;
-  --water: #0077be;
-  --grass: #00a86b;
-  --stone: #a8a8a8;
-  --sand: #f0e68c;
-  --forest: #228b22;
+  --water: #50869f;
+  --grass: #7e851e;
+  --stone: #939393;
+  --sand: #ac937f;
+  --forest: #55851e;
+  --ore: #5b594f;
 }
 
 body {
@@ -21,7 +26,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 100vw;
-  /* max-height: 100vh; */
   overflow: hidden;
 }
 

@@ -1,7 +1,7 @@
 import { resourceOptions, slotOptions, terrainOptions } from "@/config"
 import { ResourceAmount, Slot, SlotName, Terrain } from "@/types/global"
 import clsx from "clsx"
-import { useRef, useState } from "react"
+import { Fragment, useRef, useState } from "react"
 import { BuildMenu } from "../BuildMenu/BuildMenu"
 import { Button } from "../IconButton/IconButton"
 import styles from "./Tile.module.css"
@@ -21,6 +21,10 @@ export const Tile = ({ alterResource, initialSlot, terrain }: Props) => {
   const [buildMenuOpen, setBuildMenuOpen] = useState(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const [output, setOutput] = useState<boolean>(false)
+
+  const terrainIcon = terrainOptions.find(
+    (terrainOption) => terrainOption.name === terrain
+  )?.icon
 
   const availableSlots = slotOptions.filter(({ availableOn }) =>
     availableOn.includes(terrain)
@@ -47,19 +51,19 @@ export const Tile = ({ alterResource, initialSlot, terrain }: Props) => {
       <div className={styles.slot}>
         {slot || buildStatus !== undefined ? (
           slot ? (
-            <h2 className={styles.object} style={{ fontSize: "4rem" }}>
-              {slot.icon}
-            </h2>
+            <h2 className={styles.object}>{slot.icon}</h2>
           ) : (
-            <progress
-              className={styles.progress}
-              value={buildStatus}
-              max={100}
-            />
+            <>
+              <h2 className={styles.object}>🏗</h2>
+              <progress
+                className={styles.progress}
+                value={buildStatus}
+                max={100}
+              />
+            </>
           )
         ) : (
-          terrainOptions.find((terrainOption) => terrainOption.name === terrain)
-            ?.icon
+          terrainIcon && <h2 className={styles.object}>{terrainIcon}</h2>
         )}
         {availableSlots.length && buttonVisible ? (
           <Button
@@ -114,7 +118,9 @@ export const Tile = ({ alterResource, initialSlot, terrain }: Props) => {
 const Output = ({ output }: { output: ResourceAmount }) => (
   <div className={styles.output}>
     {Object.keys(output).map((resource) => (
-      <>{resourceOptions.find(({ name }) => name === resource)?.icon}</>
+      <Fragment key={resource}>
+        {resourceOptions.find(({ name }) => name === resource)?.icon}
+      </Fragment>
     ))}
   </div>
 )
