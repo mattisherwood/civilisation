@@ -7,7 +7,11 @@ type Props = {
   cameraPosition?: { x: number; y: number }
 }
 
-export const Board = ({ children, viewMode, cameraPosition }: Props) => (
+export const Board = ({
+  children,
+  viewMode,
+}: //cameraPosition
+Props) => (
   <div className={clsx(styles.board, viewMode === "3D" && styles.with3D)}>
     {children}
   </div>

@@ -9,7 +9,10 @@ type Props = {
 }
 
 export const View = ({ children, viewMode }: Props) => {
-  const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0 })
+  const [
+    cameraPosition,
+    // setCameraPosition
+  ] = useState({ x: 0, y: 0 })
   //   console.log("cameraPosition", cameraPosition)
   const ref = useRef<HTMLDivElement>(null)
 
