@@ -1,6 +1,7 @@
 import { slotOptions } from "@/config"
 import { Slot, Terrain } from "@/types/global"
 import { Button } from "../IconButton/IconButton"
+import styles from "./BuildMenu.module.css"
 
 type Props = {
   availableSlots: Slot[]
@@ -9,7 +10,7 @@ type Props = {
 }
 
 export const BuildMenu = ({ availableSlots, terrain, handleBuild }: Props) => (
-  <>
+  <div className={styles.buildMenu}>
     {slotOptions
       .filter((slot) => slot.availableOn.includes(terrain))
       .map((slot, i) => (
@@ -28,5 +29,5 @@ export const BuildMenu = ({ availableSlots, terrain, handleBuild }: Props) => (
           </div>
         </Button>
       ))}
-  </>
+  </div>
 )

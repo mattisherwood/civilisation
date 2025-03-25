@@ -1,7 +1,17 @@
 .board {
-  display: flex;
-  flex-wrap: wrap;
-  grid-template-columns: repeat(4, 1fr);
-  width: calc(100vw - 64px);
-  max-width: 400px;
+  transition: transform 0.3s ease-in-out;
+  --rotation: 0deg;
+  transform: translate3d(
+      var(--cameraPositionX),
+      var(--cameraPositionY),
+      var(--cameraPositionY)
+    )
+    rotateX(var(--rotation));
+  transform-origin: center bottom;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.with3D {
+  --rotation: 45deg;
 }

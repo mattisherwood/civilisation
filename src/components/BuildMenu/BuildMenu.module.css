@@ -1,0 +1,11 @@
+.buildMenu {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(51, 47, 47, 0.7);
+  z-index: -1;
+}

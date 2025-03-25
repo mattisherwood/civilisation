@@ -1,9 +1,97 @@
 .tile {
-  width: 25%;
+  width: 100px;
+  flex-shrink: 0;
   aspect-ratio: 1;
   background: var(--gray-alpha-100);
   display: flex;
   align-items: center;
   justify-content: center;
   border: solid 1px var(--gray-alpha-200);
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.slot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+  transform-style: preserve-3d;
+  transform: rotateX(calc(-1 * var(--rotation)));
+  transform-origin: center bottom;
+  pointer-events: none;
+}
+
+.slot * {
+  pointer-events: auto;
+}
+
+.water {
+  background: url("https://www.textures.com/system/gallery/photos/FX/Water/Plain/50937/WaterPlain0012_1_150.jpg")
+    var(--water);
+}
+
+.sand {
+  background: url("https://www.textures.com/system/gallery/photos/114651-Sand/114652-Sand/107953/Sand0180_1_150.jpg")
+    var(--sand);
+}
+
+.grass {
+  background: url("https://www.textures.com/system/gallery/photos/Nature/Grass/34892/Grass0053_1_150.jpg")
+    var(--grass);
+}
+
+.forest {
+  background: url("https://www.textures.com/system/gallery/photos/Nature/Grass/34892/Grass0053_1_150.jpg")
+    var(--forest);
+}
+
+.stone {
+  background: url("https://www.textures.com/system/gallery/photos/Rock/Smooth/64274/RockSmooth0076_1_150.jpg")
+    var(--stone);
+}
+
+.object {
+  z-index: 1;
+}
+
+.object::before {
+  content: "";
+  position: absolute;
+  inset: 40% 0 20% 0;
+  background: -webkit-radial-gradient(
+    center,
+    ellipse cover,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.2) 15%,
+    rgba(0, 0, 0, 0.1) 40%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  z-index: -1;
+}
+
+.output {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: transform 1.5s cubic-bezier(0, 0.2, 0.5, 1),
+    opacity 1.5s cubic-bezier(0, 0.5, 0.5, 1);
+  transform: translateY(-70%);
+  opacity: 0;
+}
+
+@starting-style {
+  .output {
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+}
+
+.button {
+  z-index: 2;
 }

@@ -1,17 +1,19 @@
 .button {
   --rotate: 0deg;
-  opacity: 0;
-  transform: scale(0);
+  /* opacity: 0; */
+  /* transform: scale(0); */
   cursor: pointer;
   transition: opacity 0.2s, transform 0.2s;
   position: absolute;
-  border: solid 2px var(--foreground);
-  background: var(--button-primary);
+  border: solid 2px var(--white);
+  background: var(--darkGrey);
   padding: 8px;
   border-radius: 99px;
 }
 
-*:hover > .button {
-  opacity: 1;
-  transform: scale(1) rotate(var(--rotate));
+@starting-style {
+  .button {
+    opacity: 0;
+    transform: scale(0) rotate(var(--rotate));
+  }
 }

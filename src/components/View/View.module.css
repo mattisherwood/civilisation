@@ -1,0 +1,20 @@
+.view {
+  position: fixed;
+  inset: 50px 0 0;
+  overflow: overlay;
+  perspective: 600px;
+  transform-style: preserve-3d;
+  transition: margin 0.3s ease-in-out;
+}
+
+.view::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+@supports (not (selector(::-webkit-scrollbar))) {
+  .view {
+    scrollbar-color: var(--scrollbar-foreground) var(--scrollbar-background);
+    scrollbar-width: thin;
+  }
+}

@@ -1,5 +1,6 @@
-import { slotOptions, terrainOptions } from "@/config"
-import { Slot, SlotName, Terrain } from "@/types/global"
+import { resourceOptions, slotOptions, terrainOptions } from "@/config"
+import { ResourceAmount, Slot, SlotName, Terrain } from "@/types/global"
+import clsx from "clsx"
 import { useRef, useState } from "react"
 import { BuildMenu } from "../BuildMenu/BuildMenu"
 import { Button } from "../IconButton/IconButton"
@@ -15,62 +16,105 @@ export const Tile = ({ alterResource, initialSlot, terrain }: Props) => {
   const [slot, setSlot] = useState<Slot | undefined>(
     slotOptions.find(({ name }) => name === initialSlot)
   )
+  const [buildStatus, setBuildStatus] = useState<number | undefined>()
+  const [buttonVisible, setButtonVisible] = useState(false)
   const [buildMenuOpen, setBuildMenuOpen] = useState(false)
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
+  const [output, setOutput] = useState<boolean>(false)
 
   const availableSlots = slotOptions.filter(({ availableOn }) =>
     availableOn.includes(terrain)
   )
 
+  const showOutput = () => {
+    setOutput(true)
+    setTimeout(() => {
+      setOutput(false)
+    }, 900)
+  }
+
   return (
     <div
-      className={styles.tile}
-      style={{
-        backgroundColor: terrainOptions.find(
-          (terrainOption) => terrainOption.name === terrain
-        )?.color,
+      className={clsx(styles.tile, styles[terrain])}
+      onMouseEnter={() => {
+        setButtonVisible(true)
       }}
       onMouseLeave={() => {
+        setButtonVisible(false)
         setBuildMenuOpen(false)
       }}
     >
-      {availableSlots.length ? (
-        slot ? (
-          <Button
-            onClick={() => {
-              alterResource(slot.salvageValue || {})
-              setSlot(undefined)
-              if (intervalRef.current) {
-                clearInterval(intervalRef.current)
-                intervalRef.current = null
-              }
-            }}
-          >
-            ❌
-          </Button>
+      <div className={styles.slot}>
+        {slot || buildStatus !== undefined ? (
+          slot ? (
+            <h2 className={styles.object} style={{ fontSize: "4rem" }}>
+              {slot.icon}
+            </h2>
+          ) : (
+            <progress
+              className={styles.progress}
+              value={buildStatus}
+              max={100}
+            />
+          )
         ) : (
-          <Button onClick={() => setBuildMenuOpen(!buildMenuOpen)}>🔨</Button>
-        )
-      ) : null}
-      {buildMenuOpen && (
-        <BuildMenu
-          availableSlots={availableSlots}
-          terrain={terrain}
-          handleBuild={(slot) => {
-            alterResource(slot.buildCost || {})
-            setSlot(slot)
-            intervalRef.current = setInterval(() => {
-              alterResource(slot.output || {})
-            }, 1000)
-            setBuildMenuOpen(false)
-          }}
-        />
-      )}
-      {
-        terrainOptions.find((terrainOption) => terrainOption.name === terrain)
-          ?.icon
-      }
-      {slot && <h2 style={{ fontSize: "4rem" }}>{slot.icon}</h2>}
+          terrainOptions.find((terrainOption) => terrainOption.name === terrain)
+            ?.icon
+        )}
+        {availableSlots.length && buttonVisible ? (
+          <Button
+            onClick={
+              slot
+                ? () => {
+                    alterResource(slot.salvageValue || {})
+                    setSlot(undefined)
+                    if (intervalRef.current) {
+                      clearInterval(intervalRef.current)
+                      intervalRef.current = null
+                    }
+                  }
+                : () => setBuildMenuOpen(!buildMenuOpen)
+            }
+            className={styles.button}
+          >
+            {slot ? <>❌</> : <>🔨</>}
+          </Button>
+        ) : null}
+        {slot && output && <Output output={slot.output || {}} />}
+        {buildMenuOpen && (
+          <BuildMenu
+            availableSlots={availableSlots}
+            terrain={terrain}
+            handleBuild={(slot) => {
+              alterResource(slot.buildCost || {})
+              setBuildStatus(0)
+              const interval = setInterval(
+                () => setBuildStatus((prev) => (prev || 0) + 1),
+                100
+              )
+              setTimeout(() => {
+                clearInterval(interval)
+                setBuildStatus(undefined)
+                setSlot(slot)
+                intervalRef.current = setInterval(() => {
+                  alterResource(slot.output || {})
+                  showOutput()
+                }, 2000)
+              }, 10000)
+              setBuildMenuOpen(false)
+              setButtonVisible(false)
+            }}
+          />
+        )}
+      </div>
     </div>
   )
 }
+
+const Output = ({ output }: { output: ResourceAmount }) => (
+  <div className={styles.output}>
+    {Object.keys(output).map((resource) => (
+      <>{resourceOptions.find(({ name }) => name === resource)?.icon}</>
+    ))}
+  </div>
+)
