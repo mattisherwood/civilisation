@@ -69,7 +69,6 @@
 }
 
 .object {
-  z-index: 1;
   font-size: 4rem;
 }
 
@@ -85,7 +84,6 @@
     rgba(0, 0, 0, 0.1) 40%,
     rgba(0, 0, 0, 0) 70%
   );
-  z-index: -1;
 }
 
 .output {
@@ -94,7 +92,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1;
   transition: transform 1.5s cubic-bezier(0, 0.2, 0.5, 1),
     opacity 1.5s cubic-bezier(0, 0.5, 0.5, 1);
   transform: translateY(-70%);
@@ -111,8 +108,4 @@
 .progress {
   width: 70%;
   margin-top: -8px;
-}
-
-.button {
-  z-index: 2;
 }

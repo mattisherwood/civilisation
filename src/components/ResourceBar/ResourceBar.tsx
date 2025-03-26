@@ -8,7 +8,7 @@ export const ResourceBar = ({ resources }: Props) => {
   return (
     <div className={styles.resourceBar}>
       {Object.entries(resources)
-        .filter(([resource, amount]) => amount > 0)
+        // .filter(([resource, amount]) => amount > 0)
         .map(([resource, amount]) => (
           <div key={resource}>
             {

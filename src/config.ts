@@ -11,21 +11,32 @@ export const terrainOptions: { name: Terrain; color: string; icon: string }[] =
   ]
 
 export const resourceOptions: { name: string; icon: string }[] = [
+  { name: "bread", icon: "🍞" },
   { name: "fish", icon: "🐟" },
+  { name: "iron", icon: "▀" },
+  { name: "meat", icon: "🍖" },
   { name: "stone", icon: "🪨" },
   { name: "wheat", icon: "🌾" },
   { name: "wood", icon: "🪵" },
-  { name: "iron", icon: "▀" },
 ]
 
 export const slotOptions: Slot[] = [
   {
-    name: "farm",
-    icon: "🧑‍🌾",
-    availableOn: ["grass"],
+    name: "boat",
+    icon: "🚣",
+    availableOn: ["water"],
     buildCost: { wood: -1 },
     salvageValue: { wood: 0.5 },
-    output: { wheat: 1 },
+    output: { fish: 1 },
+  },
+  {
+    name: "dairyFarm",
+    icon: "🐄",
+    availableOn: ["grass"],
+    buildCost: { wood: -1, wheat: -1 },
+    salvageValue: { wood: 0.5 },
+    input: { wheat: -3 },
+    output: { meat: 1 },
   },
   {
     name: "lumberyard",
@@ -36,12 +47,13 @@ export const slotOptions: Slot[] = [
     output: { wood: 1 },
   },
   {
-    name: "quarry",
-    icon: "🧨",
-    availableOn: ["stone"],
-    buildCost: { wood: -1 },
+    name: "mill",
+    icon: "🍞",
+    availableOn: ["grass"],
+    buildCost: { wood: -1, wheat: -1 },
     salvageValue: { wood: 0.5 },
-    output: { stone: 1 },
+    input: { wheat: -2 },
+    output: { bread: 1 },
   },
   {
     name: "mine",
@@ -52,12 +64,20 @@ export const slotOptions: Slot[] = [
     output: { iron: 1 },
   },
   {
-    name: "boat",
-    icon: "🚣",
-    availableOn: ["water"],
+    name: "quarry",
+    icon: "🧨",
+    availableOn: ["stone"],
     buildCost: { wood: -1 },
     salvageValue: { wood: 0.5 },
-    output: { fish: 1 },
+    output: { stone: 1 },
+  },
+  {
+    name: "wheatField",
+    icon: "🌾",
+    availableOn: ["grass"],
+    buildCost: { wood: -1 },
+    salvageValue: { wood: 0.5 },
+    output: { wheat: 1 },
   },
 ]
 
