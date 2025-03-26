@@ -1,14 +1,13 @@
-import { Slot, Terrain } from "@/types/global"
+import { Slot } from "@/types/global"
 import { Button } from "../IconButton/IconButton"
 import styles from "./BuildMenu.module.css"
 
 type Props = {
   availableSlots: Slot[]
-  terrain: Terrain
   handleBuild: (slot: Slot) => void
 }
 
-export const BuildMenu = ({ availableSlots, terrain, handleBuild }: Props) => (
+export const BuildMenu = ({ availableSlots, handleBuild }: Props) => (
   <div className={styles.buildMenu}>
     {availableSlots.map((slot, i) => (
       <Button

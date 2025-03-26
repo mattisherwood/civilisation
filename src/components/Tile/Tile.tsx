@@ -150,7 +150,6 @@ export const Tile = ({
         {buildMenuOpen && (
           <BuildMenu
             availableSlots={availableSlots}
-            terrain={terrain}
             handleBuild={(slot) => {
               startBuilding(slot)
               setBuildMenuOpen(false)
