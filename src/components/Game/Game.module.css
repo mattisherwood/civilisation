@@ -3,3 +3,25 @@
   font-weight: 700;
   text-align: center;
 }
+
+.logo {
+  display: block;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  transform-style: preserve-3d;
+}
+
+.spacer {
+  width: var(--tileSize);
+  height: var(--tileSize);
+  flex: 0 0 var(--tileSize);
+}
+
+@media (min-width: 768px) {
+  .resourceToggle {
+    display: none;
+  }
+}

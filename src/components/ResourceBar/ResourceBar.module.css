@@ -1,6 +1,68 @@
-.resourceBar {
+.resourceBar,
+.foodDrawer {
   display: flex;
-  width: 100%;
-  gap: 16px;
   align-items: center;
+  background: var(--ore);
+  background: linear-gradient(to bottom, var(--darkGrey), var(--ore));
+}
+
+.resourceBar {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.resourceItem {
+  text-align: center;
+  padding: 16px;
+}
+
+.resourceSummaryItem {
+  cursor: pointer;
+  position: relative;
+}
+
+.resourceSummaryItem:hover {
+  background: rgba(var(--white-channel), 0.1);
+}
+
+.resourceSummaryItem.open::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 12px solid var(--darkGrey);
+  border-top: 0;
+  transform: translateX(-50%);
+}
+
+.foodDrawer {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .resourceBar {
+    top: auto;
+    width: auto;
+    display: flex;
+    position: relative;
+    background: none;
+  }
+
+  .resourceItem {
+    text-align: left;
+    min-width: 90px;
+  }
 }

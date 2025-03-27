@@ -3,19 +3,19 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  height: 53px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  padding: 8px 16px;
-  gap: 16px;
+  column-gap: 16px;
   width: 100%;
   box-sizing: border-box;
   background: var(--leather);
   z-index: 9;
-  box-shadow: 0 0 10px var(--black),
-    0 -10px 10px -10px rgba(var(--white-channel), 0.5) inset,
-    0 -13px 13px -10px rgba(var(--black-channel), 0.5) inset;
+  box-shadow: 0 5px 10px rgba(var(--black-channel), 0.5),
+    0 10px 10px -10px rgba(var(--white-channel), 0.5) inset,
+    0 -10px 10px -10px rgba(var(--black-channel), 0.5) inset;
 }
 
 .header::before {
@@ -24,4 +24,11 @@
   inset: 2 -2;
   border: dashed 1px rgba(var(--black-channel), 0.8);
   z-index: -1;
+}
+
+@media (min-width: 768px) {
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
 }

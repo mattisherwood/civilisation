@@ -1,6 +1,6 @@
 .view {
   position: fixed;
-  inset: 50px 0 0;
+  inset: 53px 0 0;
   overflow: overlay;
   perspective: 600px;
   transform-style: preserve-3d;

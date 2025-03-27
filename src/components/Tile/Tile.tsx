@@ -16,7 +16,7 @@ type Props = {
   alterResource: ({ food, wood }: { food?: number; wood?: number }) => void
   initialSlot?: SlotName
   resources: ResourceAmount
-  terrain: Terrain
+  terrain: Terrain | null
 }
 
 const canBuildHere = (slot: Slot, terrain: Terrain) =>
@@ -33,6 +33,7 @@ export const Tile = ({
   resources,
   terrain,
 }: Props) => {
+  if (!terrain) return <div className={styles.spacer} />
   const [slot, setSlot] = useState<Slot | undefined>(
     slotOptions.find(({ name }) => name === initialSlot)
   )

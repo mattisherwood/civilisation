@@ -13,7 +13,7 @@ export const terrainOptions: { name: Terrain; color: string; icon: string }[] =
 export const resourceOptions: { name: string; icon: string }[] = [
   { name: "bread", icon: "🍞" },
   { name: "fish", icon: "🐟" },
-  { name: "iron", icon: "▀" },
+  { name: "iron", icon: "🪙" },
   { name: "meat", icon: "🍖" },
   { name: "stone", icon: "🪨" },
   { name: "wheat", icon: "🌾" },

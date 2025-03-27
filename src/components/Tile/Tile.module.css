@@ -1,7 +1,11 @@
-.tile {
+.tile,
+.spacer {
   width: var(--tileSize);
   flex: 0 0 var(--tileSize);
   aspect-ratio: 1;
+}
+
+.tile {
   background: var(--midGrey);
   display: flex;
   align-items: center;
@@ -84,6 +88,7 @@
     rgba(0, 0, 0, 0.1) 40%,
     rgba(0, 0, 0, 0) 70%
   );
+  pointer-events: none;
 }
 
 .output {
@@ -96,6 +101,7 @@
     opacity 1.5s cubic-bezier(0, 0.5, 0.5, 1);
   transform: translateY(-70%);
   opacity: 0;
+  pointer-events: none;
 }
 
 @starting-style {
