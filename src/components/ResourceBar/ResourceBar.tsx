@@ -21,7 +21,10 @@ export const ResourceBar = ({ hidden, resources }: Props) => {
   const otherResources = Object.entries(resources).filter(
     ([resource]) => !isFood(resource)
   )
-  const totalFood = foodResources.reduce((acc, [_, amount]) => acc + amount, 0)
+  const totalFood = foodResources.reduce(
+    (acc, currentValue) => acc + currentValue[1],
+    0
+  )
 
   return (
     <>

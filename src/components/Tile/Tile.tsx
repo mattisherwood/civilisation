@@ -33,7 +33,6 @@ export const Tile = ({
   resources,
   terrain,
 }: Props) => {
-  if (!terrain) return <div className={styles.spacer} />
   const [slot, setSlot] = useState<Slot | undefined>(
     slotOptions.find(({ name }) => name === initialSlot)
   )
@@ -109,7 +108,7 @@ export const Tile = ({
   )?.icon
 
   const availableSlots = slotOptions
-    .filter((slot) => canBuildHere(slot, terrain))
+    .filter((slot) => terrain && canBuildHere(slot, terrain))
     .filter((slot) => canAffordToBuild(slot, resources))
 
   const showOutput = () => {
@@ -119,7 +118,7 @@ export const Tile = ({
     }, 900)
   }
 
-  return (
+  return terrain ? (
     <div
       className={clsx(styles.tile, styles[terrain])}
       onMouseEnter={() => {
@@ -176,6 +175,8 @@ export const Tile = ({
         ) : null}
       </div>
     </div>
+  ) : (
+    <div className={styles.spacer} />
   )
 }
 
